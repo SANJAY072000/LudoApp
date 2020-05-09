@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View, Image, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 
 const s=StyleSheet.create({
@@ -21,18 +21,24 @@ const s=StyleSheet.create({
 export default class Roll extends Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {u:require('../images/dice1.png')};
     this.press=this.press.bind(this);
   }
 
-
-  press=e=>Alert.alert('Make roll function')
-
+  press=e=>{
+    let i=Math.ceil(Math.random()*6);
+    if(i==1)this.setState({u:require(`../images/dice1.png`)});
+    else if(i==2)this.setState({u:require(`../images/dice2.png`)});
+    else if(i==3)this.setState({u:require(`../images/dice3.png`)});
+    else if(i==4)this.setState({u:require(`../images/dice4.png`)});
+    else if(i==5)this.setState({u:require(`../images/dice5.png`)});
+    else if(i==6)this.setState({u:require(`../images/dice6.png`)});
+  }
 
   render(){
     return(
       <View>
-      <Image source={require('../images/dice3.png')}/>
+      <Image source={this.state.u}/>
       <TouchableOpacity onPress={this.press}>
       <Text style={s.gb}>Play Game</Text>
       </TouchableOpacity>
